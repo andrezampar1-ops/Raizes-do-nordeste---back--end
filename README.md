@@ -32,7 +32,7 @@ Git
 
 1. Clonar o repositório
 
-git clone https://github.com/andrezampar1-ops/Raizes-do-nordeste-backend.git
+git clone (https://github.com/andrezampar1-ops/Raizes-do-nordeste---back--end)
 cd raizes-do-nordeste-backend
 
 
