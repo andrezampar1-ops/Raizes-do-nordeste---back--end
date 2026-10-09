@@ -1,125 +1,90 @@
-Raízes do Nordeste - API Back-End
+API Raízes do Nordeste
 
-Este repositório contém o código-fonte da API REST desenvolvida para a rede de lanchonetes Raízes do Nordeste. O projeto foi elaborado como requisito de avaliação da disciplina de Projeto Multidisciplinar (Trilha Back-End) do curso de Análise e Desenvolvimento de Sistemas da UNINTER.
+Projeto desenvolvido para a disciplina de Projeto Multidisciplinar (Trilha Back-End) do curso de Análise e Desenvolvimento de Sistemas da UNINTER.
 
-O objetivo principal desta API é centralizar o fluxo operacional da rede, garantindo suporte multicanal (App, Totem, Balcão, Web), controle de pedidos, gestão de stock, simulação de pagamentos e segurança (autenticação JWT).
+A ideia aqui foi construir uma API REST para o sistema de uma rede de lanchonetes (Raízes do Nordeste). O sistema precisa lidar com pedidos vindo de vários lugares (App, Totem, Balcão, Web) e centralizar tudo.
 
-  Tecnologias Utilizadas
+Tecnologias 
 
-Linguagem: Node.js com TypeScript
+Node.js com TypeScript
 
-Framework Web: Express
+Express para criar o servidor e as rotas
 
-Banco de Dados: PostgreSQL
+PostgreSQL como banco de dados
 
-ORM: Prisma
+Prisma como ORM pra facilitar a vida com o banco
 
-Segurança: JSON Web Token (JWT) e BCrypt (Hash de senhas)
+JWT pra fazer a autenticação (login)
 
-Documentação: Swagger (OpenAPI)
+Swagger pra documentar a API
 
-  Pré-requisitos
+Como rodar o projeto na sua máquina
 
-Para executar este projeto localmente, vais precisar de ter instalado na tua máquina:
+Se quiser testar o projeto, segue o passo a passo:
 
-Node.js (versão 18 ou superior)
+1. Clona o repositório
 
-PostgreSQL (ou um container Docker com o Postgres)
-
-Git
-
-  Passo a Passo para Configuração e Execução
-
-1. Clonar o repositório
-
-git clone (https://github.com/andrezampar1-ops/Raizes-do-nordeste---back--end)
+git clone https://github.com/andrezampar1-ops/Raizes-do-nordeste---back--end
 cd raizes-do-nordeste-backend
 
 
-2. Instalar as dependências
+2. Instala as paradas
 
 npm install
 
 
-3. Configurar Variáveis de Ambiente
+3. Configura as variáveis de ambiente
 
-Na raiz do projeto, existe um ficheiro chamado .env.example.
+Tem um arquivo chamado .env.example na raiz do projeto.
 
-Cria uma cópia desse ficheiro e renomeia para .env.
+Copia ele e muda o nome pra .env.
 
-Altera a variável DATABASE_URL com as tuas credenciais do PostgreSQL.
+Troca o valor do DATABASE_URL pra string de conexão do seu banco de dados Postgres (precisa ter um rodando).
 
-Define um "segredo" para a geração dos tokens JWT.
+Coloca uma senha no JWT_SECRET.
 
-Exemplo do .env:
+4. Cria o banco de dados
 
-DATABASE_URL="postgresql://usuario:senha@localhost:5432/raizes_nordeste?schema=public"
-JWT_SECRET="minha_chave_super_secreta_para_desenvolvimento"
-PORT=3000
+Com o Postgres rodando certinho e o .env configurado, roda esse comando pra criar as tabelas:
 
-
-4. Criar o Banco de Dados e Rodar as Migrations
-
-Com o PostgreSQL a rodar, executa o comando abaixo para que o Prisma crie as tabelas automaticamente no teu banco de dados:
-
-npx prisma migrate dev --name init
+npx prisma migrate dev
 
 
-(Opcional: Se tiveres um ficheiro de seed configurado para criar utilizadores ou produtos iniciais, roda npx prisma db seed)
+5. Inicia o servidor
 
-5. Iniciar a API
-
-Para iniciar o servidor em ambiente de desenvolvimento, executa:
+Pra rodar em modo de desenvolvimento:
 
 npm run dev
 
 
-A API estará disponível em: http://localhost:3000
+Se tudo der certo, a API vai rodar em http://localhost:3000.
 
-📖 Documentação da API (Swagger)
+Documentação (Swagger)
 
-Toda a documentação dos endpoints, incluindo contratos de request/response e status codes esperados, está disponível através do Swagger.
+A documentação das rotas, com o que precisa mandar e o que ela devolve, tá toda no Swagger.
+Com a API rodando, é só acessar:
+ http://localhost:3000/api-docs
 
-Com a API a rodar, acede no teu navegador:
-👉 http://localhost:3000/api-docs
+Como testar (Postman)
 
-🧪 Como Rodar os Testes (Postman)
-
-Os cenários de teste exigidos no projeto (fluxo principal, erros de autenticação, validações, etc.) foram exportados e encontram-se na pasta raiz do repositório no ficheiro:
-📄 Postman_Collection_Raizes_Nordeste.json
-
-Passo a passo para testar:
+Deixei a minha collection do Postman na raiz do projeto com os testes que fiz pra disciplina. O arquivo é o Postman_Collection_Raizes_Nordeste.json.
 
 Abre o Postman.
 
-Clica em Import (canto superior esquerdo) e seleciona o ficheiro .json mencionado acima.
+Importa esse arquivo .json.
 
-A coleção inclui pastas divididas por recursos (Auth, Pedidos, Produtos).
+Dá uma olhada nas pastas.
 
-Ordem sugerida:
+Dica: Roda primeiro a rota de Login (POST /auth/login) pra pegar o token. Depois copia esse token e coloca na aba "Authorization -> Bearer Token" nas outras rotas pra conseguir testar (como a de criar pedido).
 
-Executa primeiro o POST /auth/login para obteres um token válido.
+O fluxo que implementei
 
-Copia o accessToken retornado e coloca-o no separador Authorization (Bearer Token) das rotas protegidas, como o POST /pedidos.
+Foquei na parte principal que o roteiro pedia:
 
-📌 Fluxo Principal Implementado (MVP)
+Tem que estar logado. Aí você manda a requisição pra criar o pedido e precisa informar de onde ele tá vindo (ex: APP ou BALCAO).
 
-O projeto foca no seguinte fluxo crítico exigido pela atividade:
+A API pega isso, valida e cria o pedido no banco com status de AGUARDANDO_PAGAMENTO.
 
-Cliente autenticado (JWT) envia a criação de um pedido, informando obrigatoriamente o canal de origem (ex: APP, TOTEM).
+Aí eu fiz um serviço falso (PagamentoMockService) que simula a maquininha aprovando ou não.
 
-A API valida a requisição e cria o pedido com o status AGUARDANDO_PAGAMENTO.
-
-O serviço PagamentoMockService é acionado internamente.
-
-Caso aprovado, o status do pedido é atualizado automaticamente para PAGO.
-
-🤖 Declaração de Uso de Inteligência Artificial
-
-Para a elaboração deste projeto e documentação, foram utilizadas ferramentas de Inteligência Artificial (modelos de linguagem) exclusivamente como apoio para:
-
-Revisão ortográfica e gramatical.
-
-Sugestões de formatação para Markdown e Swagger.
-
-Auxílio na estruturação de exemplos de código boilerplate (configurações do Express).
+Se ele aprovar, o status do pedido muda pra PAGO.
