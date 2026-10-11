@@ -63,7 +63,7 @@ Documentação (Swagger)
 
 A documentação das rotas, com o que precisa mandar e o que ela devolve, tá toda no Swagger.
 Com a API rodando, é só acessar:
- http://localhost:3000/api-docs
+ http://localhost:3339/api-docs
 
 Como testar (Postman)
 
