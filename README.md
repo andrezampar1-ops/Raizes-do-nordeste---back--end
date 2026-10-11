@@ -57,7 +57,7 @@ Pra rodar em modo de desenvolvimento:
 npm run dev
 
 
-Se tudo der certo, a API vai rodar em http://localhost:3000.
+Se tudo der certo, a API vai rodar em http://localhost:3339.
 
 Documentação (Swagger)
 
