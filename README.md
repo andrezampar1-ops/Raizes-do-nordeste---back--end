@@ -1,90 +1,173 @@
-API Raízes do Nordeste
+🌵API Raízes do Nordeste
+API REST desenvolvida para a disciplina Projeto Multidisciplinar (Trilha Back-End) do curso de Análise e Desenvolvimento de Sistemas da UNINTER.
+O sistema foi projetado para atender às necessidades operacionais da rede fictícia de restaurantes Raízes do Nordeste, centralizando pedidos provenientes de múltiplos canais de atendimento e oferecendo recursos para gestão de produtos, estoque, pagamentos e fidelização de clientes.
 
-Projeto desenvolvido para a disciplina de Projeto Multidisciplinar (Trilha Back-End) do curso de Análise e Desenvolvimento de Sistemas da UNINTER.
+📋 Sobre o Projeto
+Em operações modernas de alimentação, pedidos podem ser originados por diferentes canais, como aplicativos, totens de autoatendimento, balcões físicos e plataformas web.
 
-A ideia aqui foi construir uma API REST para o sistema de uma rede de lanchonetes (Raízes do Nordeste). O sistema precisa lidar com pedidos vindo de vários lugares (App, Totem, Balcão, Web) e centralizar tudo.
+A proposta desta API é fornecer uma camada centralizada responsável por:
+Receber pedidos de diferentes canais;
+Gerenciar produtos e estoque;
+Validar autenticação e autorização de usuários;
+Controlar o ciclo de vida dos pedidos;
+Simular integrações de pagamento;
+Gerenciar promoções e programas de fidelidade;
+Registrar operações para auditoria.
 
-Tecnologias 
+A aplicação foi desenvolvida seguindo os princípios de arquitetura REST e boas práticas de desenvolvimento back-end utilizando TypeScript.
 
-Node.js com TypeScript
+🚀 Tecnologias Utilizadas
+Back-End
+Node.js
+TypeScript
+Express.js
+Banco de Dados
+PostgreSQL
+Prisma ORM
+Segurança
+JWT (JSON Web Token)
+BCrypt
+Documentação e Testes
+Swagger / OpenAPI
+Postman
 
-Express para criar o servidor e as rotas
+🏗️ Arquitetura da Solução
+A aplicação foi estruturada utilizando separação de responsabilidades, visando facilitar manutenção, escalabilidade e organização do código.
 
-PostgreSQL como banco de dados
+src/
+│
+├── controllers/
+├── services/
+├── repositories/
+├── middlewares/
+├── routes/
+├── prisma/
+├── utils/
+└── types/
+Camadas
+Camada	ResponsabilidadeControllers	Recebem e tratam as requisições HTTP
+Services	Implementam as regras de negócio
+Repositories	Realizam acesso aos dados
+Middlewares	Autenticação, autorização e validações
+Routes	Definição dos endpoints
+Prisma	Integração com o banco PostgreSQL
 
-Prisma como ORM pra facilitar a vida com o banco
+⚙️ Requisitos
+Certifique-se de possuir instalado:
+Node.js 18+
+PostgreSQL
+npm
 
-JWT pra fazer a autenticação (login)
+Verifique as versões:
+node --version
+npm --version
 
-Swagger pra documentar a API
+📥 Instalação
+Clonar o repositório
+git clone (https://github.com/andrezampar1-ops/Raizes-do-nordeste---back--end.git)
 
-Como rodar o projeto na sua máquina
+Acessar o projeto
+cd Raizes-do-nordeste---back--end
 
-Se quiser testar o projeto, segue o passo a passo:
-
-1. Clona o repositório
-
-git clone https://github.com/andrezampar1-ops/Raizes-do-nordeste---back--end
-cd raizes-do-nordeste-backend
-
-
-2. Instala as paradas
-
+Instalar dependências
 npm install
 
+🔐 Variáveis de Ambiente
+Crie um arquivo .env na raiz do projeto com base no arquivo .env.example.
 
-3. Configura as variáveis de ambiente
+Exemplo:
+DATABASE_URL="postgresql://usuario:senha@localhost:5432/raizes_nordeste"
+ JWT_SECRET="sua_chave_secreta"
+ PORT=3000
 
-Tem um arquivo chamado .env.example na raiz do projeto.
-
-Copia ele e muda o nome pra .env.
-
-Troca o valor do DATABASE_URL pra string de conexão do seu banco de dados Postgres (precisa ter um rodando).
-
-Coloca uma senha no JWT_SECRET.
-
-4. Cria o banco de dados
-
-Com o Postgres rodando certinho e o .env configurado, roda esse comando pra criar as tabelas:
-
+🗄️ Configuração do Banco de Dados
+Executar migrações:
 npx prisma migrate dev
 
+Sincronizar estrutura do banco:
+npx prisma db push
 
-5. Inicia o servidor
-
-Pra rodar em modo de desenvolvimento:
-
+▶️ Executando a Aplicação
+Inicie o ambiente de desenvolvimento:
 npm run dev
+ A API ficará disponível em:
+http://localhost:3000
 
+📚 Documentação da API
+A documentação interativa dos endpoints está disponível através do Swagger.
+Após iniciar o projeto, acesse:
+http://localhost:3000/api-docs
 
-Se tudo der certo, a API vai rodar em http://localhost:3339.
+Por meio do Swagger é possível:
+Consultar endpoints disponíveis;
+Validar parâmetros;
+Testar requisições;
+Visualizar modelos de resposta.
 
-Documentação (Swagger)
+✅ Testes com Postman
+A collection utilizada durante o desenvolvimento encontra-se na raiz do projeto:
+Postman_Collection_Raizes_Nordeste.json
 
-A documentação das rotas, com o que precisa mandar e o que ela devolve, tá toda no Swagger.
-Com a API rodando, é só acessar:
- http://localhost:3339/api-docs
+Como executar:
+Abra o Postman.
+Importe o arquivo da collection.
+Execute a rota de autenticação:
+POST /auth/login
+Copie o token JWT retornado.
+Nas demais requisições, configure:
+Authorization → Bearer Token
+ Cole o token obtido no login.
+ 
+🔄 Fluxo de Negócio dos Pedidos
 
-Como testar (Postman)
+O principal fluxo implementado no sistema segue as etapas abaixo:
+Usuário Autenticado
+       │
+       ▼
+Criação do Pedido
+       │
+       ▼
+Validação dos Dados
+       │
+       ▼
+Pedido criado com status:
+AGUARDANDO_PAGAMENTO
+       │
+       ▼
+PagamentoMockService
+       │
+  ┌────┴────┐
+  ▼         ▼
+Aprovado Reprovado
+ │           │
+ ▼           ▼
+PAGO PAGAMENTO_NEGADO
 
-Deixei a minha collection do Postman na raiz do projeto com os testes que fiz pra disciplina. O arquivo é o Postman_Collection_Raizes_Nordeste.json.
+Exemplo de Origem do Pedido
+O sistema permite registrar pedidos oriundos de diferentes canais:
+APP
+WEB
+BALCAO
+TOTEM
+Essa informação é armazenada juntamente com o pedido para possibilitar futuras análises operacionais.
 
-Abre o Postman.
+🔒 Autenticação
+A autenticação é baseada em JWT (JSON Web Token).
+Após o login bem-sucedido:
+O usuário recebe um token.
+O token deve ser enviado no cabeçalho das requisições protegidas.
 
-Importa esse arquivo .json.
-
-Dá uma olhada nas pastas.
-
-Dica: Roda primeiro a rota de Login (POST /auth/login) pra pegar o token. Depois copia esse token e coloca na aba "Authorization -> Bearer Token" nas outras rotas pra conseguir testar (como a de criar pedido).
-
-O fluxo que implementei
-
-Foquei na parte principal que o roteiro pedia:
-
-Tem que estar logado. Aí você manda a requisição pra criar o pedido e precisa informar de onde ele tá vindo (ex: APP ou BALCAO).
-
-A API pega isso, valida e cria o pedido no banco com status de AGUARDANDO_PAGAMENTO.
-
-Aí eu fiz um serviço falso (PagamentoMockService) que simula a maquininha aprovando ou não.
-
-Se ele aprovar, o status do pedido muda pra PAGO.
+Exemplo:
+Authorization: Bearer seu_token
+🎯 Funcionalidades Implementadas
+✅ Cadastro e autenticação de usuários
+✅ Geração de token JWT
+✅ Criptografia de senhas com BCrypt
+✅ Gestão de produtos
+✅ Controle de estoque
+✅ Criação e gerenciamento de pedidos
+✅ Simulação de pagamentos
+✅ Programa de fidelidade
+✅ Promoções
+✅ Registro de auditoria
+✅ Documentação Swagger
