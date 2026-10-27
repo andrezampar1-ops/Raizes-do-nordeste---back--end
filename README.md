@@ -56,17 +56,17 @@ src/
 Camadas
 
 Camada	Responsabilidade
-Controllers	Recebem e tratam as requisições HTTP
+Controllers: Recebem e tratam as requisições HTTP
 
-Services	Implementam as regras de negócio
+Services: Implementam as regras de negócio
 
-Repositories	Realizam acesso aos dados
+Repositories: Realizam acesso aos dados
 
-Middlewares	Autenticação, autorização e validações
+Middlewares:	Autenticação, autorização e validações
 
-Routes	Definição dos endpoints
+Routes: Definição dos endpoints
 
-Prisma	Integração com o banco PostgreSQL
+Prisma: Integração com o banco PostgreSQL
 
 ⚙️ Pré-Requisitos
 
