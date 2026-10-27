@@ -65,18 +65,29 @@ src/
 Camadas
 
 Camada	Responsabilidade
+
 Controllers	Recebem e tratam as requisições HTTP
+
 Services	Implementam as regras de negócio
+
 Repositories	Realizam acesso aos dados
+
 Middlewares	Autenticação, autorização e validações
+
 Routes	Definição dos endpoints
+
 Prisma	Integração com o banco PostgreSQL
+
 ⚙️ Pré-Requisitos
+
 Certifique-se de possuir instalado:
 
 Node.js 18 ou superior;
+
 PostgreSQL;
+
 npm;
+
 Verifique as versões:
 
 node --version
