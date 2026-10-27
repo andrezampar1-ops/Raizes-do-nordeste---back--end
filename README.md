@@ -107,7 +107,7 @@ npm install
 Crie um arquivo .env na raiz do projeto com base no .env.example.
 
 DATABASE_URL="postgresql://usuario:senha@localhost:5432/raizes_nordeste"
-JWT_SECRET="sua_chave_secreta"
+JWT_SECRET="chave_secreta"
 PORT=3000
 
 🗄️ Configuração do Banco de Dados
