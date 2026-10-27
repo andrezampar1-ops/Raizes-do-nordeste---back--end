@@ -166,41 +166,6 @@ Authorization → Bearer Token
 
 Cole o token obtido no login.
 
-🔄 Fluxo de Negócio dos Pedidos
-
-Usuário Autenticado
-
-       │
-       ▼
-       
-Criação do Pedido
-
-       │
-       ▼
-       
-Validação dos Dados
-
-       │
-       ▼
-       
-AGUARDANDO_PAGAMENTO
-
-       │
-       ▼
-       
-PagamentoMockService
-
-       │
-  ┌────┴────┐
-  ▼         ▼
-  
-Aprovado  Reprovado
-
-  │          │
-  ▼          ▼
-  
-PAGO   PAGAMENTO_NEGADO
-
 📦 Origem dos Pedidos
 
 O sistema permite registrar pedidos oriundos de diferentes canais:
