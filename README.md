@@ -1,11 +1,8 @@
 🌵 API Raízes do Nordeste
-
 API REST desenvolvida para a disciplina Projeto Multidisciplinar (Trilha Back-End) do curso de Análise e Desenvolvimento de Sistemas da UNINTER.
-
 O sistema foi projetado para atender às necessidades operacionais da rede fictícia de restaurantes Raízes do Nordeste, centralizando pedidos provenientes de múltiplos canais de atendimento e oferecendo recursos para gestão de produtos, estoque, pagamentos e fidelização de clientes.
 
 📋 Sobre o Projeto
-
 Em operações modernas de alimentação, os pedidos podem ser originados por diferentes canais, como aplicativos, totens de autoatendimento, balcões físicos e plataformas web.
 
 Esta API atua como uma camada centralizadora responsável por:
@@ -21,23 +18,14 @@ A aplicação foi desenvolvida seguindo os princípios da arquitetura REST e boa
 🚀 Tecnologias Utilizadas
 
 Back-End
-
 Node.js
-
 TypeScript
-
 Express.js
-
 PostgreSQL
-
 Prisma ORM
-
 JWT (JSON Web Token)
-
 BCrypt
-
 Swagger / OpenAPI
-
 Postman
 
 🏗️ Arquitetura da Solução
@@ -57,36 +45,24 @@ src/
 Camadas
 
 Camada	Responsabilidade
-
 Controllers	Recebem e tratam as requisições HTTP
-
 Services	Implementam as regras de negócio
-
 Repositories	Realizam acesso aos dados
-
 Middlewares	Autenticação, autorização e validações
-
 Routes	Definição dos endpoints
-
 Prisma	Integração com o banco PostgreSQL
 
 ⚙️ Pré-Requisitos
-
 Certifique-se de possuir instalado:
-
 Node.js 18 ou superior;
-
 PostgreSQL;
-
-npm;
+npm
 
 Verifique as versões:
-
 node --version
 npm --version
 
 📥 Instalação
-
 1. Clone o repositório
 git clone https://github.com/andrezampar1-ops/Raizes-do-nordeste---back--end.git
 2. Acesse o diretório
@@ -95,9 +71,7 @@ cd Raizes-do-nordeste---back--end
 npm install
 
 🔐 Variáveis de Ambiente
-
 Crie um arquivo .env na raiz do projeto com base no .env.example.
-
 DATABASE_URL="postgresql://usuario:senha@localhost:5432/raizes_nordeste"
 JWT_SECRET="chave_secreta"
 PORT=3000
@@ -191,23 +165,13 @@ Authorization: Bearer seu_token
 🎯 Funcionalidades Implementadas
 
 ✅ Cadastro e autenticação de usuários
-
 ✅ Geração de token JWT
-
 ✅ Criptografia de senhas com BCrypt
-
 ✅ Gestão de produtos
-
 ✅ Controle de estoque
-
 ✅ Criação e gerenciamento de pedidos
-
 ✅ Simulação de pagamentos
-
 ✅ Programa de fidelidade
-
 ✅ Promoções
-
 ✅ Registro de auditoria
-
 ✅ Documentação Swagger
