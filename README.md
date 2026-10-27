@@ -9,21 +9,13 @@ O sistema foi projetado para atender às necessidades operacionais da rede fict�
 Em operações modernas de alimentação, os pedidos podem ser originados por diferentes canais, como aplicativos, totens de autoatendimento, balcões físicos e plataformas web.
 
 Esta API atua como uma camada centralizadora responsável por:
-
 Receber pedidos de diferentes canais;
-
 Gerenciar produtos e estoque;
-
 Validar autenticação e autorização de usuários;
-
 Controlar o ciclo de vida dos pedidos;
-
 Simular integrações de pagamento;
-
 Gerenciar promoções e programas de fidelidade;
-
 Registrar operações para auditoria.
-
 A aplicação foi desenvolvida seguindo os princípios da arquitetura REST e boas práticas de desenvolvimento back-end utilizando TypeScript.
 
 🚀 Tecnologias Utilizadas
