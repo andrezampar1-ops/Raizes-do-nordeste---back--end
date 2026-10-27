@@ -178,15 +178,27 @@ O token deve ser enviado no cabeçalho das requisições protegidas.
 Exemplo:
 
 Authorization: Bearer seu_token
+
 🎯 Funcionalidades Implementadas
+
 ✅ Cadastro e autenticação de usuários
+
 ✅ Geração de token JWT
+
 ✅ Criptografia de senhas com BCrypt
+
 ✅ Gestão de produtos
+
 ✅ Controle de estoque
+
 ✅ Criação e gerenciamento de pedidos
+
 ✅ Simulação de pagamentos
+
 ✅ Programa de fidelidade
+
 ✅ Promoções
+
 ✅ Registro de auditoria
+
 ✅ Documentação Swagger
