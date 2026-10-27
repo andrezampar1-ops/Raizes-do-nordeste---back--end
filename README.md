@@ -29,19 +29,13 @@ TypeScript
 
 Express.js
 
-Banco de Dados
-
 PostgreSQL
 
 Prisma ORM
 
-Segurança
-
 JWT (JSON Web Token)
 
 BCrypt
-
-Documentação e Testes
 
 Swagger / OpenAPI
 
