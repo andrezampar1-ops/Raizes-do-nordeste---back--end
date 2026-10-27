@@ -92,6 +92,7 @@ Verifique as versões:
 
 node --version
 npm --version
+
 📥 Instalação
 
 1. Clone o repositório
@@ -113,6 +114,7 @@ PORT=3000
 
 Executar migrações
 npx prisma migrate dev
+
 Sincronizar estrutura do banco
 npx prisma db push
 
